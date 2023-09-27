@@ -27,7 +27,7 @@ const io = socketIO(httpsServer, {
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io-client/dist'));
+
 
 // Configure CORS to allow requests from your client-side origin
 const corsOptions = {

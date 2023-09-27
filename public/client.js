@@ -4,7 +4,7 @@ import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 import { Player } from './player.js';
 import { Ground } from './ground.js';
 
-const socket = io.connect("wss://87.92.128.137:3000/", { // Update with your server's HTTPS URL
+const socket = io.connect("wss://87.92.128.137:3000", { // Update with your server's HTTPS URL
   withCredentials: true,
   transportOptions: {
     polling: {
