@@ -19,7 +19,7 @@ const httpsServer = https.createServer({
 
 const io = socketIO(httpsServer, {
     cors: {
-        origin: 'https://captainrelief.github.io/captain3d/', // Replace with your frontend's URL
+        origin: 'https://87.92.128.137:3000', // Replace with your frontend's URL
         methods: ["GET", "POST"],
         credentials: true,
         transports: ["websocket", "polling"],
@@ -31,7 +31,7 @@ app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io-client
 
 // Configure CORS to allow requests from your client-side origin
 const corsOptions = {
-    origin: 'https://captainrelief.github.io/captain3d/', // Replace with your Nginx server's domain or IP
+    origin: 'https://87.92.128.137:3000', // Replace with your Nginx server's domain or IP
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Enable credentials (cookies, authorization headers, etc.)
     optionsSuccessStatus: 204, // Sets the status code for successful OPTIONS requests
