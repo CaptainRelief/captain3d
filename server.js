@@ -19,26 +19,24 @@ const httpsServer = https.createServer({
 
 const io = socketIO(httpsServer, {
     cors: {
-        origin: 'https://87.92.128.137:3000', // Replace with your frontend's URL
-        methods: ["GET", "POST"],
-        credentials: true,
-        transports: ["websocket", "polling"],
-    }
+        origins: ["https://localhost:3000"],
+        
+    handlePreflightRequest: (req, res) => {
+        res.writeHead(200, {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "GET,POST",
+            "Access-Control-Allow-Headers": "my-custom-header",
+            "Access-Control-Allow-Credentials": true
+        });
+        res.end();
+    }}
 });
 
 app.use(express.static(path.join(__dirname, 'public')));
-
+app.use('/socket.io', express.static(__dirname + '/node_modules/socket.io-client/dist'));
 
 // Configure CORS to allow requests from your client-side origin
-const corsOptions = {
-    origin: 'https://87.92.128.137:3000', // Replace with your Nginx server's domain or IP
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // Enable credentials (cookies, authorization headers, etc.)
-    optionsSuccessStatus: 204, // Sets the status code for successful OPTIONS requests
-};
-
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Store connected players
 const players = {};
